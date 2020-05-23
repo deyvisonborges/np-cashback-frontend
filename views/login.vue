@@ -1,16 +1,17 @@
 <template>
 	<main>
-    <form class="box" action="/dashboard">
-      <img src="https://malcoded.com/static/713b40a34ef44b9c6180fa626bf45937/6ff5e/nodejs-cli-banner.png" alt="">
+    <form class="box">
+      <p if="err_message" class="err_message">{{err_message}}</p>
+			<img src="https://malcoded.com/static/713b40a34ef44b9c6180fa626bf45937/6ff5e/nodejs-cli-banner.png" alt="">
       <div class="input-box">
         <label for="iEmail">e-mail</label>
-        <input id="iEmail" type="email" placeholder="enter your e-mail" />
+        <input v-model="vEmail" name="iEmail" type="email" placeholder="enter your e-mail" />
       </div>
       <div class="input-box">
         <label for="iPassword">password</label>
-        <input id="iPassword" type="password" placeholder="enter your password" />
+        <input v-model="vPassword" name="iPassword" type="password" placeholder="enter your password" />
       </div>
-      <button type="submit" to="/dashboard" >Submit</button>
+      <button @submit.prevent="login">Submit</button>
       <div class="footer-box">
         <p><strong>All rights reserved</strong></p>
         <p>&copy; Deyvison Borges - 2020</p>
@@ -22,10 +23,43 @@
 <script>
 export default {
 	name: 'ViewLogin',
+	data () {
+		return {
+			err_message: null,
+			vEmail: null,
+			vPassword: null
+		}
+	},
+	methods: {
+		async login() {
+			try {
+				console.log(this.err_message)
+				console.log('passei por aqiu')
+				await this.$store.dispatch('login', {
+					email: this.vEmail,
+					password: this.vPassword
+				});
+			} catch (err) {
+				this.err_message = err;
+				return;
+			}
+		}
+	},
+	// mounted() {
+	// 	this.login()
+	// }
 }
 </script>
 
 <style scoped>
+.err_message {
+	color: #df2c2c;
+	font-size: 0.9rem;
+	margin: 10px 0;
+	padding: 5px;
+	position: relative;
+	text-align: center;
+}
 main {
 	background-color: #363a45;
 	display: grid;
