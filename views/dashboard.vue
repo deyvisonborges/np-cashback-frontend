@@ -1,11 +1,14 @@
 <template>
   <DashboardContainer>
+    <Modal>
+			<span>Deseja mesmo <strong> cancelar o pedido? </strong> </span>
+		</Modal>
     <Sidebar>
       <SidebarOptions></SidebarOptions>
     </Sidebar>
     <DashboardContent>
       <NavbarContainer></NavbarContainer>
-			<nuxt-child></nuxt-child>
+      <nuxt-child></nuxt-child>
     </DashboardContent>
   </DashboardContainer>
 </template>
@@ -17,7 +20,8 @@ import Sidebar from "../components/sidebar/sidebar";
 import SidebarOptions from "../components/sidebar/options";
 import NavbarContainer from "../components/navbar/navbar-container";
 
-import Timeline from '../components/timeline';
+import Timeline from "../components/timeline";
+import Modal from "../components/modal";
 
 export default {
   name: "PageDashboard",
@@ -27,7 +31,8 @@ export default {
     Sidebar,
     SidebarOptions,
     NavbarContainer,
-		Timeline
+    Timeline,
+    Modal
   }
 };
 </script>
