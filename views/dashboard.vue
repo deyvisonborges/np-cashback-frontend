@@ -1,16 +1,20 @@
 <template>
-  <DashboardContainer>
-    <Modal>
-			<span>Deseja mesmo <strong> cancelar o pedido? </strong> </span>
-		</Modal>
-    <Sidebar>
-      <SidebarOptions></SidebarOptions>
-    </Sidebar>
-    <DashboardContent>
-      <NavbarContainer></NavbarContainer>
-      <nuxt-child></nuxt-child>
-    </DashboardContent>
-  </DashboardContainer>
+  <div>
+    <Modal
+      :message="'Deseja mesmo excluir tal tarefa?'"
+      :button_acept="'Sim'"
+      :button_decline="'Não'"
+    />
+    <DashboardContainer>
+      <Sidebar>
+        <SidebarOptions></SidebarOptions>
+      </Sidebar>
+      <DashboardContent>
+        <NavbarContainer></NavbarContainer>
+        <nuxt-child></nuxt-child>
+      </DashboardContent>
+    </DashboardContainer>
+  </div>
 </template>
 
 <script>
