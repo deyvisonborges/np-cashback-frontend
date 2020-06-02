@@ -45,9 +45,6 @@ export default {
 			}
 		}
 	},
-	// mounted() {
-	// 	this.login()
-	// }
 }
 </script>
 

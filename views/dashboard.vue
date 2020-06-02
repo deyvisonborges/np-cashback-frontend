@@ -2,8 +2,9 @@
   <div>
     <Modal
       :message="'Deseja mesmo excluir tal tarefa?'"
-      :button_acept="'Sim'"
-      :button_decline="'Não'"
+      :acept="'Sim'"
+      :decline="'Não'"
+      :showProp=false
     />
     <DashboardContainer>
       <Sidebar>

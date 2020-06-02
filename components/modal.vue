@@ -2,40 +2,31 @@
 	<div class="np__modal" v-if="show">
 		<h3>{{message}}</h3>
 		<div class="np__modal--buttons"> 
-			<button class="aceitar"> {{button_acept}} </button>
+			<button class="aceitar"> {{acept}} </button>
 			<button class="negar" 
 				@click="setStateModal(showProp)"> 
-				{{button_decline}} 
+				{{decline}} 
 			</button>
 		</div>
-		<span class="np__modal--error">{{err}}</span>
 	</div>
 </template>
 
 <script>
-export default { 
-	props: [  'message', 'button_acept', 'button_decline', 'showProp' ],
+export default {
+	props: {
+		message: { type: String },
+		acept: { type: String }, 
+		decline: { type: String },
+		showProp: { type: Boolean },
+	},
 	name: "ComponentModal",
 	data() {
 		return {
 			show: true,
-			err: null
 		}
 	},
 	methods: {
-		setInformationsModal(message, acept, decline) {
-			this.message = message;
-			this.button_acept = acept;
-			this.button_decline = decline;
-		},
-		setStateModal(state) {
-			if(!state) {
-				this.err = 'erro ao pegar stat da modal[true/false]';
-				return;
-				this.err = null;
-			};
-			this.show = state;
-		}
+		setStateModal(state) { this.show = state; }
 	}
 }
 </script>
@@ -45,13 +36,16 @@ export default {
 	background-color: #ffffff;
 	border-radius: 20px;
 	box-shadow: 0 0 15px 0 #c3c3c3;
+	position: fixed;
+  	top: 0;
+  	bottom: 0;
+  	left: 0;
+  	right: 0;
+  	margin: 15pc auto;
 	height: fit-content;
 	text-align: center;
-	left: 50vh;
 	padding: 10px;
-	position: absolute;
-	top: 50vh;
-	transition: all 0.7ms;
+	transition: top .30s cubic-bezier(1, -0.74, 0, 1.26);
 	width: 150px;
 	z-index: 1;
 }
@@ -76,7 +70,7 @@ export default {
 	font-weight: bold;
 } 
 .np__modal--buttons .aceitar {
-	background-color: rgb(61, 255, 93);
+	background-color: #0fc768;
 	padding: 10px;
 }
 .np__modal--buttons .aceitar:active {
@@ -84,15 +78,11 @@ export default {
   top: 3px;
 }
 .np__modal--buttons .negar {
-	background-color: rgb(255, 61, 61);
+	background-color: #ff3d3d;
 	padding: 10px;	
 }
 .np__modal--buttons .negar:active {
 	box-shadow: 0 0 0 1px #df2c2c;
   top: 3px;
-}
-.np__modal--error {
-	color: red;
-	font-size: 0.5rem;
 }
 </style>
